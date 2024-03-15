@@ -1,4 +1,5 @@
 import { lazy } from "react";
+import BlogDetailsPage from "../pages/BlogDetailsPage";
 
 const AboutPage = lazy(() => import("../pages/About"));
 const TourDetailPage = lazy( () => import('../pages/TourDetailPage') )
@@ -6,7 +7,7 @@ const SignupPage = lazy( () => import('../pages/Signup') )
 const LoginPage = lazy( () => import('../pages/Login') )
 const ContactPage = lazy( () => import('../pages/Contact') )
 const DashboardPage = lazy( () => import('../pages/dashboard/Dashboard') )
-const BlogsPage = lazy( () => import('../pages/Blogs') )
+const BlogsPage = lazy( () => import('../pages/BlogDetailsPage') )
 
 const coreRoutes = [
   {
@@ -18,6 +19,11 @@ const coreRoutes = [
     path: "/tour/:id",
     title: "Tour",
     component: TourDetailPage,
+  },
+  {
+    path: "/blogs/:id",
+    title: "Blogs Details",
+    component: BlogDetailsPage,
   },
   {
     path: "/signup",
