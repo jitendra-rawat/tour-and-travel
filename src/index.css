@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+
+
+.hero-bg{
+    background-image: url('https://img.freepik.com/free-vector/cartoon-summer-background_52683-61812.jpg?t=st=1710490376~exp=1710493976~hmac=610f013ff18cda503d556d7a3fcb7dce8b45802fc8dbf9509432033f083bae02&w=1060');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+ 
+}
+
+.download-bg{
+    background-image: url('https://esanchari.com/static/media/dowloadAppBG.99d574c7100e6775889d.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+ 
+}
