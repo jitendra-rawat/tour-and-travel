@@ -7,7 +7,7 @@ const SignupPage = lazy( () => import('../pages/Signup') )
 const LoginPage = lazy( () => import('../pages/Login') )
 const ContactPage = lazy( () => import('../pages/Contact') )
 const DashboardPage = lazy( () => import('../pages/dashboard/Dashboard') )
-const BlogsPage = lazy( () => import('../pages/BlogDetailsPage') )
+const BlogsPage = lazy( () => import('../pages/Blogs') )
 
 const coreRoutes = [
   {

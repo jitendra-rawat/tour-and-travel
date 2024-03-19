@@ -34,7 +34,7 @@ const Dashboard = () => {
             case 'Add Blog':
                 return <AddBlog />;
       default:
-        return null;
+        return <DashboardData />;
     }
   };
 

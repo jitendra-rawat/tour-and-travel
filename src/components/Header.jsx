@@ -30,6 +30,10 @@ const Header = () => {
             <li>
             <Link to={'/login'} className=" hover:text-gray-700 font-poppins font-semibold">Login</Link>
             </li>
+
+            <li>
+            <Link to={'/dashboard'} className=" hover:text-gray-700 font-poppins font-semibold">Dashboard</Link>
+            </li>
           
           
           </ul>
