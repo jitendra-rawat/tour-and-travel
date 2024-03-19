@@ -6,7 +6,7 @@ const TourDetailPage = lazy( () => import('../pages/TourDetailPage') )
 const SignupPage = lazy( () => import('../pages/Signup') )
 const LoginPage = lazy( () => import('../pages/Login') )
 const ContactPage = lazy( () => import('../pages/Contact') )
-const DashboardPage = lazy( () => import('../pages/dashboard/Dashboard') )
+
 const BlogsPage = lazy( () => import('../pages/Blogs') )
 
 const coreRoutes = [
@@ -41,11 +41,7 @@ const coreRoutes = [
     title: "Contact",
     component:  ContactPage,
   },
-  {
-    path: "/dashboard",
-    title: "Dashboard",
-    component:  DashboardPage,
-  },
+
   {
     path: "/blogs",
     title: "Blogs",

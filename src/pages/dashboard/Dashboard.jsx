@@ -39,7 +39,7 @@ const Dashboard = () => {
   };
 
   return (
-    <section className='bg-gray-200 h-screen flex justify-start items-stretch'>
+    <section className='bg-gray-200 h-screen flex justify-start items-stretch mt-24'>
       {/* left section */}
          
       <div className='bg-gray-600 h-screen max-w-xs container'>
