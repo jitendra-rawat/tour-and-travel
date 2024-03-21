@@ -1,32 +1,27 @@
-import React from 'react';
-import { Link } from 'react-router-dom'; // Import Link from React Router
+import React,{useState,useEffect} from 'react';
+import { Link } from 'react-router-dom'; 
 import TourCard from './TourCard';
+import axios from 'axios';
 
 const Tours = () => {
-  const tourData = [
-    {
-      title: 'Char Dham Yatra',
-      price: 500,
-      location: 'Hawaii',
-      duration: '5 days',
-      images: [
-        'https://via.placeholder.com/800x600',
-        'https://via.placeholder.com/800x600',
-        'https://via.placeholder.com/800x600',
-      ],
-    },
-    {
-      title: 'Adi Kailash Yatra',
-      price: 500,
-      location: 'Hawaii',
-      duration: '5 days',
-      images: [
-        'https://via.placeholder.com/800x600',
-        'https://via.placeholder.com/800x600',
-        'https://via.placeholder.com/800x600',
-      ],
-    },
-  ];
+
+  const [tours, setTours] = useState([]);
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('http://localhost:4000/tour/all');
+        setTours(response.data);
+      } catch (error) {
+        console.error('Error fetching tour data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+ 
 
   return (
     <div className="container mx-auto max-w-7xl my-28">
@@ -37,10 +32,12 @@ const Tours = () => {
         </p>
       </div>
       <div className="my-8 flex flex-wrap justify-evenly items-center">
-        {tourData.map((tour, index) => (
+
+        {tours.map((tour, index) => (
         
-          <Link key={index} to={`/tour/${tour.title}`}>
+          <Link key={index} to={`/tour/${tour._id}`}>
             <TourCard
+            id={tour._id}
               title={tour.title}
               price={tour.price}
               location={tour.location}

@@ -52,6 +52,7 @@ const Blogs = () => {
     try {
      
       await axios.put(`http://localhost:4000/blog/update/${selectedBlog}`, { ...formData});
+      
       toast.success("Blog has been Updated Sucessfully")
 
       setFormData({

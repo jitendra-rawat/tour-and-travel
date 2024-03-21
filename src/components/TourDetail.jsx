@@ -52,23 +52,32 @@ const TourDetail = ({ tour, images }) => {
           {tour.overview}
         </p>
 
-        {/* highlights */}
+      
 
-        <div className="my-20">
-          <div className="flex gap-2">
-            <BsHighlights size={30} />
-            <h2 className="text-xl font-poppins font-semibold mb-4">
-              Highlights
-            </h2>
-          </div>
-          <ul className="list-disc list-inside text-base font-poppins">
-            {tour.highlights.map((highlight, index) => (
-              <li key={index} className="mb-2 text-base">
-                {highlight}
-              </li>
-            ))}
-          </ul>
-        </div>
+{/* highlights */}
+<div className="my-20">
+  <div className="flex gap-2">
+    <BsHighlights size={30} />
+    <h2 className="text-xl font-poppins font-semibold mb-4">
+      Highlights
+    </h2>
+  </div>
+  <ul className="list-disc list-inside text-base font-poppins">
+    {tour.highlights.map((highlight, index) => (
+      <li key={index} className="mb-2">
+        <ul className="list-disc list-inside">
+          {highlight.split(',').map((part, i) => (
+            <li key={i}>
+              {part.trim()}
+            </li>
+          ))}
+        </ul>
+      </li>
+    ))}
+  </ul>
+</div>
+
+
 
         {/* info */}
 
@@ -107,93 +116,120 @@ const TourDetail = ({ tour, images }) => {
 
         {/* itinerary */}
 
-        <div className="my-20">
-          <div className="flex gap-2">
-            <MdCardTravel size={30} />
-            <p
-              className="text-xl font-poppins font-semibold mb-4"
-              onClick={() => toggleAccordion(null)}
-            >
-              Itinerary
-            </p>
-          </div>
-          <div className="accordion">
-            {tour.itinerary.map((item, index) => (
-              <div key={index} className="mb-4 border-b border-gray-300">
-                <h3
-                  className="flex items-center justify-between cursor-pointer text-base font-semibold font-poppins"
-                  onClick={() => toggleAccordion(index)}
-                >
-                  <span className="py-2 text-base font-poppins">
-                    {item.title}
-                  </span>
-                  <span className="material-icons text-gray-400">
-                    {openAccordionIndex === index ? "arrow_upward" : "arrow_downward"}
-                  </span>
-                </h3>
-                {openAccordionIndex === index && (
-                  <p className="text-gray-600 mt-2 py-2 text-base font-poppins">
-                    {item.description}
-                  </p>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
+{/* itinerary */}
+<div className="my-20">
+  <div className="flex gap-2">
+    <MdCardTravel size={30} />
+    <p
+      className="text-xl font-poppins font-semibold mb-4"
+      onClick={() => toggleAccordion(null)}
+    >
+      Itinerary
+    </p>
+  </div>
+  <div className="accordion">
+    {tour.itinerary.map((item, index) => (
+      <div key={index} className="mb-4 border-b border-gray-300">
+        <h3
+          className="flex items-center justify-between cursor-pointer text-base font-semibold font-poppins"
+          onClick={() => toggleAccordion(index)}
+        >
+          <span className="py-2 text-base font-poppins">
+            Day {index + 1}
+          </span>
+          <span className="material-icons text-gray-400">
+            {openAccordionIndex === index ? "arrow_upward" : "arrow_downward"}
+          </span>
+        </h3>
+        {openAccordionIndex === index && (
+          <p className="text-gray-600 mt-2 py-2 text-base font-poppins">
+            {item.itinerary}
+          </p>
+        )}
+      </div>
+    ))}
+  </div>
+</div>
+
+
 
         {/* facilities and booking */}
         <div className="my-20 flex justify-between items-start">
+
+          
           {/* features */}
           <div>
-            <div>
-              <div className="flex gap-2">
-                <MdFeaturedPlayList size={30} />
-                <h2 className="text-xl font-poppins font-semibold mb-4">
-                  Features
-                </h2>
-              </div>
-              <ul className="list-disc list-inside text-base font-poppins">
-                {tour.facilities.map((facility, index) => (
-                  <li key={index} className="mb-2">
-                    {facility}
-                  </li>
-                ))}
-              </ul>
-            </div>
 
-            {/* inclusions */}
-            <div className="my-20">
-              <div className="flex gap-2">
-                <IoAddCircle size={30} />
-                <h2 className="text-xl font-poppins font-semibold mb-4">
-                  Inclusions
-                </h2>
-              </div>
-              <ul className="list-disc list-inside text-base font-poppins">
-                {tour.inclusions.map((inclusion, index) => (
-                  <li key={index} className="mb-2">
-                    {inclusion}
-                  </li>
-                ))}
-              </ul>
-            </div>
+{/* features */}
+<div className="my-20">
+  <div className="flex gap-2">
+    <MdFeaturedPlayList size={30} />
+    <h2 className="text-xl font-poppins font-semibold mb-4">
+      Features
+    </h2>
+  </div>
+  <ul className="list-disc list-inside text-base font-poppins">
+    {tour.facilities.map((facility, index) => (
+      <li key={index} className="mb-2">
+        <ul className="list-disc list-inside">
+          {facility.split(',').map((part, i) => (
+            <li key={i}>
+              {part.trim()}
+            </li>
+          ))}
+        </ul>
+      </li>
+    ))}
+  </ul>
+</div>
 
-            {/* notes */}
-            <div className="my-20">
-              <div className="flex gap-2">
-                <MdNoteAlt size={30} />
-                <h2 className="text-xl font-poppins font-semibold mb-4">
-                  Note
-                </h2>
-              </div>
-              <ul className="list-disc list-inside text-base font-poppins">
-                {tour.note.map((note, index) => (
-                  <li key={index} className="mb-2">
-                    {note}
-                  </li>
-                ))}
-              </ul>
-            </div>
+{/* inclusions */}
+<div className="my-20">
+  <div className="flex gap-2">
+    <IoAddCircle size={30} />
+    <h2 className="text-xl font-poppins font-semibold mb-4">
+      Inclusions
+    </h2>
+  </div>
+  <ul className="list-disc list-inside text-base font-poppins">
+    {tour.inclusions.map((inclusionGroup, index) => (
+      <li key={index} className="mb-4">
+        <ul className="list-disc list-inside">
+          {inclusionGroup.split(',').map((inclusion, i) => (
+            <li key={i} className="mb-1">
+              {inclusion.trim()}
+            </li>
+          ))}
+        </ul>
+      </li>
+    ))}
+  </ul>
+</div>
+
+{/* notes */}
+<div className="my-20">
+  <div className="flex gap-2">
+    <MdNoteAlt size={30} />
+    <h2 className="text-xl font-poppins font-semibold mb-4">
+      Note
+    </h2>
+  </div>
+  <ul className="list-disc list-inside text-base font-poppins">
+    {tour.note.map((noteGroup, index) => (
+      <li key={index} className="mb-2">
+        <ul className="list-disc list-inside">
+          {noteGroup.split(',').map((note, i) => (
+            <li key={i}>
+              {note.trim()}
+            </li>
+          ))}
+        </ul>
+      </li>
+    ))}
+  </ul>
+</div>
+
+
           </div>
 
           {/* booking */}

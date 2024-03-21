@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import {  toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 const AddTour = () => {
   
@@ -33,8 +33,13 @@ const AddTour = () => {
   };
 
   const handleAddImage = () => {
-    setAdditionalImages((prevImages) => [...prevImages, ""]);
+    if (additionalImages.length < 4) {
+      setAdditionalImages((prevImages) => [...prevImages, ""]);
+    } else {
+      toast("You can add up to 4 images only!");
+    }
   };
+  
 
   const handleImageChange = (index, value) => {
     setAdditionalImages((prevImages) => {
@@ -53,7 +58,7 @@ const AddTour = () => {
 
       setFormData(initialState);
       setAdditionalImages([]);
-      toast("Added New Tour Sucessfully!")
+      toast("Added New Tour Successfully!");
 
     } catch (error) {
       console.error("Error adding tour:", error);
@@ -85,19 +90,26 @@ const AddTour = () => {
                     rows="4"
                     required
                   ></textarea>
-                  {additionalImages.map((image, index) => (
-                    <input
-                      key={index}
-                      type="text"
-                      value={image}
-                      onChange={(e) => handleImageChange(index, e.target.value)}
-                      className="w-full border border-gray-300 p-2 rounded-md mt-2"
-                      placeholder="Enter image URL"
-                    />
-                  ))}
-                  <button type="button" onClick={handleAddImage} className="mt-2 bg-gray-700 hover:bg-gray-600 text-white font-semibold px-4 py-2 rounded-md">
-                    Add Image
-                  </button>
+
+
+{additionalImages.map((image, index) => (
+  <input
+    key={index}
+    type="text"
+    value={image}
+    onChange={(e) => handleImageChange(index, e.target.value)}
+    className="w-full border border-gray-300 p-2 rounded-md mt-2"
+    placeholder="Enter image URL"
+  />
+))}
+{additionalImages.length < 4 && (
+  <button type="button" onClick={handleAddImage} className="mt-2 bg-gray-700 hover:bg-gray-600 text-white font-semibold px-4 py-2 rounded-md">
+    Add Image
+  </button>
+)}
+
+
+
                 </>
               ) : (
                 <input

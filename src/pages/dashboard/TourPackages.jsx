@@ -109,7 +109,7 @@ const TourPackages = () => {
 
   const handleDelete = async (tourId) => {
     try {
-      await axios.delete(`http://localhost:4000/tours/tour/${tourId}`);
+      await axios.delete(`http://localhost:4000/tour/delete/${tourId}`);
       
       setTours(prevTours => prevTours.filter(tour => tour._id !== tourId));
       toast("Tour deleted successfully!");

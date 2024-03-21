@@ -25,8 +25,7 @@ const Dashboard = () => {
         return <AddTour />;
       case 'Messages':
         return <Messages />;
-      case 'Registered Users':
-        return <RegisteredUser />;
+ 
       case 'Bookings':
         return <Booking />;
         case 'Blogs':
@@ -48,7 +47,7 @@ const Dashboard = () => {
     <button className='text-base text-white mb-8 cursor-pointer font-poppins font-bold' onClick={() => handleOptionClick('Tour Packages')}>Tour Packages</button>
     <button className='text-base text-white mb-8 cursor-pointer font-poppins font-bold' onClick={() => handleOptionClick('Add a New Tour Package')}>Add a New Tour Package</button>
     <button className='text-base text-white mb-8 cursor-pointer font-poppins font-bold' onClick={() => handleOptionClick('Messages')}>Messages</button>
-    <button className='text-base text-white mb-8 cursor-pointer font-poppins font-bold' onClick={() => handleOptionClick('Registered Users')}>Registered Users</button>
+
     <button className='text-base text-white mb-8 cursor-pointer font-poppins font-bold' onClick={() => handleOptionClick('Bookings')}>Bookings</button>
     <button className='text-base text-white mb-8 cursor-pointer font-poppins font-bold' onClick={() => handleOptionClick('Blogs')}>Blogs</button>
     <button className='text-base text-white mb-8 cursor-pointer font-poppins font-bold' onClick={() => handleOptionClick('Add Blog')}>Add Blog</button>

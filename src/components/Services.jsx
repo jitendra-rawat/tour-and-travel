@@ -37,8 +37,8 @@ const Service = () => {
                     <path fillRule="evenodd" d="M10 0a1 1 0 011 1v5.586l1.707-1.707a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 011.414-1.414L9 6.586V1a1 1 0 011-1zm-1 14.586l-1.707 1.707a1 1 0 01-1.414-1.414l3-3a1 1 0 011.414 0l3 3a1 1 0 11-1.414 1.414L11 14.586V20a1 1 0 11-2 0v-5.414zM5 12a1 1 0 100 2h10a1 1 0 100-2H5z" clipRule="evenodd" />
                   </svg>
                 </div>
-                <h3 className="text-lg font-poppins font-semibold text-gray-800 mt-4">{service.title}</h3>
-                <p className="text-gray-600 font-poppins text-base mt-2">{service.subtitle}</p>
+                <h3 className="text-xl font-poppins font-semibold text-gray-900 mt-4">{service.title}</h3>
+                <p className="text-gray-700 font-poppins text-base mt-2">{service.subtitle}</p>
               </div>
             </div>
           ))}
