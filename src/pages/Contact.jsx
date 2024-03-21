@@ -1,9 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Contact = () => {
-  const handleSubmit = (e) => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    mobileNumber: '',
+    message: ''
+  });
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission logic here
+
+    try {
+      await axios.post('http://localhost:4000/message/post-message', formData);
+      toast.success('Message sent successfully');
+      setFormData({
+        name: '',
+        email: '',
+        mobileNumber: '',
+        message: ''
+      });
+    } catch (error) {
+      console.error('Error sending message:', error);
+      toast.error('Failed to send message');
+    }
+  };
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
   };
 
   return (
@@ -24,22 +54,22 @@ const Contact = () => {
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label htmlFor="name" className="block text-gray-700">Name</label>
-            <input type="text" id="name" name="name" className="mt-1 w-full border-gray-300 rounded-md shadow-sm  " required />
+            <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} className="mt-1 w-full border-gray-300 rounded-md shadow-sm" required />
           </div>
           <div>
             <label htmlFor="email" className="block text-gray-700">Email</label>
-            <input type="email" id="email" name="email" className="mt-1 w-full border-gray-300 rounded-md shadow-sm " required />
+            <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} className="mt-1 w-full border-gray-300 rounded-md shadow-sm" required />
           </div>
           <div>
             <label htmlFor="phone" className="block text-gray-700">Phone</label>
-            <input type="tel" id="phone" name="phone" className="mt-1 w-full border-gray-300 rounded-md shadow-sm " required />
+            <input type="tel" name="mobileNumber" value={formData.mobileNumber} onChange={handleChange} className="mt-1 w-full border-gray-300 rounded-md shadow-sm" required />
           </div>
           <div>
             <label htmlFor="message" className="block text-gray-700">Message</label>
-            <textarea id="message" name="message" rows="4" className="mt-1 w-full border-gray-300 rounded-md shadow-sm " required></textarea>
+            <textarea id="message" name="message" value={formData.message} onChange={handleChange} rows="4" className="mt-1 w-full border-gray-300 rounded-md shadow-sm" required></textarea>
           </div>
           <div>
-            <button type="submit" className="inline-flex items-center justify-center w-full px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-gray-700 hover:bg-gray-900 ">Send</button>
+            <button type="submit" className="inline-flex items-center justify-center w-full px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-gray-700 hover:bg-gray-900">Send</button>
           </div>
         </form>
       </div>

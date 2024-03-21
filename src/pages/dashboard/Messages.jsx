@@ -1,11 +1,33 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTable } from 'react-table';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const Messages = () => {
-  const data = [
-    { id: 1, name: 'John Doe', mobileNumber: '1234567890', email: 'john@example.com', message: 'Hello' },
-    { id: 2, name: 'Jane Smith', mobileNumber: '0987654321', email: 'jane@example.com', message: 'Hi there lorem lipsum lorem lipsum' },
-  ];
+  const [messages, setMessages] = useState([]);
+
+  useEffect(() => {
+    const fetchMessages = async () => {
+      try {
+        const response = await axios.get('http://localhost:4000/message/get-message');
+        setMessages(response.data);
+      } catch (error) {
+        console.error('Error fetching messages:', error);
+      }
+    };
+    fetchMessages();
+  }, [messages]);
+
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`http://localhost:4000/message/delete/${id}`);
+      setMessages(prevMessages => prevMessages.filter(message => message.id !== id));
+      toast.success('Message deleted successfully!');
+    } catch (error) {
+      console.error('Error deleting message:', error);
+      toast.error('Failed to delete message. Please try again.');
+    }
+  };
 
   const columns = React.useMemo(
     () => [
@@ -29,17 +51,12 @@ const Messages = () => {
         Header: 'Actions',
         accessor: 'id',
         Cell: ({ row }) => (
-          <button className='bg-gray-700 px-8 py-2 text-white rounded-lg' onClick={() => handleDelete(row.original.id)}>Delete</button>
+          <button className='bg-gray-700 px-8 py-2 text-white rounded-lg' onClick={() => handleDelete(row.original._id)}>Delete</button>
         ),
       },
     ],
     []
   );
-
-  const handleDelete = (id) => {
-
-    console.log(`Deleting message with id ${id}`);
-  };
 
   const {
     getTableProps,
@@ -47,7 +64,7 @@ const Messages = () => {
     headerGroups,
     rows,
     prepareRow,
-  } = useTable({ columns, data });
+  } = useTable({ columns, data: messages });
 
   return (
     <div className='max-w-8xl mx-auto container overflow-auto '>

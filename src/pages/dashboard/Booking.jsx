@@ -1,26 +1,27 @@
-import React from "react";
+import React, { useEffect, useMemo } from "react";
 import { useTable } from "react-table";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const Booking = () => {
-  const data = [
-    {
-      id: 1,
-      name: "John Doe",
-      mobileNumber: "1234567890",
-      email: "john@example.com",
-      date: "12/06/2024",
-      tourName: "Char Dham Yatra",
-    },
-    {
-      id: 2,
-      name: "Jane Smith",
-      mobileNumber: "0987654321",
-      email: "jane@example.com",
-      date:'12/06/2024',tourName:"Panch Kedar Yatra",
-    },
-  ];
+  const [bookings, setBookings] = React.useState([]);
 
-  const columns = React.useMemo(
+  useEffect(() => {
+    fetchBookings();
+  }, []);
+
+  const fetchBookings = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost:4000/booking/get-bookings"
+      );
+      setBookings(response.data);
+    } catch (error) {
+      console.error("Error fetching bookings:", error);
+    }
+  };
+
+  const columns = useMemo(
     () => [
       {
         Header: "Name",
@@ -48,7 +49,7 @@ const Booking = () => {
         Cell: ({ row }) => (
           <button
             className="bg-gray-700 px-8 py-2 text-white rounded-lg"
-            onClick={() => handleDelete(row.original.id)}
+            onClick={() => handleDelete(row.original._id)}
           >
             Delete
           </button>
@@ -58,12 +59,19 @@ const Booking = () => {
     []
   );
 
-  const handleDelete = (id) => {
-    console.log(`Deleting message with id ${id}`);
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`http://localhost:4000/booking/delete/${id}`);
+      fetchBookings(); 
+      toast.success("Booking has been Deleted")
+      console.log(`Booking with ID ${id} deleted successfully`);
+    } catch (error) {
+      console.error(`Error deleting booking with ID ${id}:`, error);
+    }
   };
 
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-    useTable({ columns, data });
+    useTable({ columns, data: bookings });
 
   return (
     <div className="max-w-8xl mx-auto container overflow-auto ">

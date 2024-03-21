@@ -110,7 +110,7 @@ const TourPackages = () => {
   const handleDelete = async (tourId) => {
     try {
       await axios.delete(`http://localhost:4000/tours/tour/${tourId}`);
-      // Update tours state after delete
+      
       setTours(prevTours => prevTours.filter(tour => tour._id !== tourId));
       toast("Tour deleted successfully!");
     } catch (error) {
@@ -126,8 +126,8 @@ const TourPackages = () => {
           <p className="text-gray-600">{tour.description}</p>
           <p className="text-gray-800 font-semibold mt-2">Price: {tour.price}</p>
           <div className="mt-4 flex justify-end">
-            <button onClick={() => handleEdit(tour)} className="text-indigo-600 hover:text-indigo-800 font-semibold mr-2">Edit</button>
-            <button onClick={() => handleDelete(tour._id)} className="text-red-600 hover:text-red-800 font-semibold">Delete</button>
+            <button onClick={() => handleEdit(tour)} className="text-white px-4 py-2 rounded-lg bg-gray-700 font-semibold mr-2">Edit</button>
+            <button onClick={() => handleDelete(tour._id)} className="px-4 py-2 rounded-lg text-white bg-gray-700 font-semibold">Delete</button>
           </div>
         </div>
       ))}
@@ -174,7 +174,7 @@ const TourPackages = () => {
             </div>
           ))}
         </div>
-        <div className="mt-4">
+        <div className="mt-4 flex gap-4">
           <button onClick={handleSubmitUpdate} className="bg-gray-700 hover:bg-gray-600 text-white font-semibold px-4 py-2 rounded-md">
             Update
           </button>

@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
-const Booking = ({ tourName }) => { // Destructure tourName from props
+const Booking = ({ tourName }) => {
 
   const [formData, setFormData] = useState({
     name: '',
     mobileNumber: '',
     email: '',
     date: '',
-    tourName: tourName // Assign tourName from props
+    tourName: tourName,
+    numberOfPeople: ''
   });
 
   const handleChange = (e) => {
@@ -15,11 +18,27 @@ const Booking = ({ tourName }) => { // Destructure tourName from props
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
-  };
 
+    try {
+      await axios.post('http://localhost:4000/booking/post-bookings', formData);
+      
+   setFormData({
+    name: '',
+    mobileNumber: '',
+    email: '',
+    date: '',
+    tourName: tourName,
+    numberOfPeople: ''
+
+   })
+      toast.success('Booking successful!');
+    } catch (error) {
+    
+      console.error('Error posting booking data:', error);
+    }
+  };
   return (
     <div className="w-[400px] mx-auto bg-white p-8 rounded-lg shadow-md">
       <form onSubmit={handleSubmit}>
@@ -38,6 +57,11 @@ const Booking = ({ tourName }) => { // Destructure tourName from props
         <div className="mb-6">
           <label htmlFor="date" className="block text-gray-700 font-poppins font-semibold mb-2">Date</label>
           <input type="date" id="date" name="date" value={formData.date} onChange={handleChange} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" />
+        </div>
+
+        <div className="mb-6">
+          <label htmlFor=" numberOfPeople" className="block text-gray-700 font-poppins font-semibold mb-2">Number of Persons</label>
+          <input type="text" name="numberOfPeople" value={formData.numberOfPeople} onChange={handleChange} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" />
         </div>
 
         <div className="mb-6">
