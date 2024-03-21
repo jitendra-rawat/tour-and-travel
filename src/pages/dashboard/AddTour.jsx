@@ -1,46 +1,63 @@
 import React, { useState } from "react";
+import axios from "axios";
+import {  toast } from 'react-toastify';
 
-const AddTour = ({ onAddTour }) => {
-  const [formData, setFormData] = useState({
+const AddTour = () => {
+  
+  const initialState = {
     name: "",
+    price: "",
+    images: [],
+    location:'',
     overview: "",
     difficulty: "",
     duration: "",
     altitude: "",
     ageLimit: "",
-    highlights: [],
-    itinerary: [],
-    facilities: [],
-    inclusions: [],
-    note: [],
-  });
+    highlights: "", 
+    itinerary: "", 
+    facilities: "", 
+    inclusions: "", 
+    note: "", 
+  };
+
+  const [formData, setFormData] = useState(initialState);
+  const [additionalImages, setAdditionalImages] = useState([]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
-      [name]: value,
+      [name]: name === "images" ? value.split(",").map(url => url.trim()) : value,
     }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  
-    onAddTour(formData);
-  
-    setFormData({
-      name: "",
-      overview: "",
-      difficulty: "",
-      duration: "",
-      altitude: "",
-      ageLimit: "",
-      highlights: [],
-      itinerary: [],
-      facilities: [],
-      inclusions: [],
-      note: [],
+  const handleAddImage = () => {
+    setAdditionalImages((prevImages) => [...prevImages, ""]);
+  };
+
+  const handleImageChange = (index, value) => {
+    setAdditionalImages((prevImages) => {
+      const updatedImages = [...prevImages];
+      updatedImages[index] = value;
+      return updatedImages;
     });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const allImages = [...formData.images, ...additionalImages];
+      await axios.post("http://localhost:4000/tour/add-tour", { ...formData, images: allImages });
+
+      setFormData(initialState);
+      setAdditionalImages([]);
+      toast("Added New Tour Sucessfully!")
+
+    } catch (error) {
+      console.error("Error adding tour:", error);
+    }
   };
 
   return (
@@ -48,235 +65,54 @@ const AddTour = ({ onAddTour }) => {
       <h2 className="font-poppins text-2xl text-center mb-4 font-bold">
         Add New Tour
       </h2>
-      <form onSubmit={handleSubmit} className="space-4 w-full ">
-
-
-<div className="flex items-center justify-between mb-2">
-
-
-        {/* tour name */}
-        <div>
-          <label className="block text-gray-700 font-poppins" htmlFor="name">
-            Tour Name
-          </label>
-          <input
-            type="text"
-       
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            className="w-[400px] border border-gray-300 p-2 rounded-md"
-            required
-          />
+      <form onSubmit={handleSubmit} className="space-4 w-full">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+          {inputFields.map((field) => (
+            <div key={field.name}>
+              <label
+                className="block text-gray-700 font-poppins"
+                htmlFor={field.name}
+              >
+                {field.label}
+              </label>
+              {field.name === "images" ? (
+                <>
+                  <textarea
+                    name={field.name}
+                    value={formData[field.name].join(",")}
+                    onChange={handleChange}
+                    className="w-full border border-gray-300 p-2 rounded-md"
+                    rows="4"
+                    required
+                  ></textarea>
+                  {additionalImages.map((image, index) => (
+                    <input
+                      key={index}
+                      type="text"
+                      value={image}
+                      onChange={(e) => handleImageChange(index, e.target.value)}
+                      className="w-full border border-gray-300 p-2 rounded-md mt-2"
+                      placeholder="Enter image URL"
+                    />
+                  ))}
+                  <button type="button" onClick={handleAddImage} className="mt-2 bg-gray-700 hover:bg-gray-600 text-white font-semibold px-4 py-2 rounded-md">
+                    Add Image
+                  </button>
+                </>
+              ) : (
+                <input
+                  type="text"
+                  name={field.name}
+                  value={formData[field.name]}
+                  onChange={handleChange}
+                  className="w-full border border-gray-300 p-2 rounded-md"
+                  required
+                />
+              )}
+            </div>
+          ))}
         </div>
 
-
-            {/* difficulty */}
-
-            <div>
-          <label className="block text-gray-700 font-poppins" htmlFor="name">
-         Difficulty
-          </label>
-          <input
-            type="text"
-           
-            name="difficulty"
-            value={formData.difficulty}
-            onChange={handleChange}
-            className="w-[400px] border border-gray-300 p-2 rounded-md"
-            required
-          />
-        </div>
-
-   
-
-        </div>
-
-
-        <div className="flex items-center justify-between mb-2" >
-
-              {/* duration */}
-
-        <div>
-          <label className="block text-gray-700 font-poppins" htmlFor="name">
-         Duration
-          </label>
-          <input
-            type="text"
-           
-            name=" duration"
-            value={formData.duration}
-            onChange={handleChange}
-            className="w-[400px] border border-gray-300 p-2 rounded-md"
-            required
-          />
-        </div>
-
-        {/* altitude */}
-        <div>
-          <label className="block text-gray-700 font-poppins" htmlFor="name">
-         Altitude
-          </label>
-          <input
-            type="text"
-           
-            name="altitude"
-            value={formData.altitude}
-            onChange={handleChange}
-            className="w-[400px] border border-gray-300 p-2 rounded-md"
-            required
-          />
-        </div>
-
-
-          </div>
-
-
-    
-
-        {/* age limit */}
-
-        <div className="mb-2">
-          <label className="block text-gray-700 font-poppins" htmlFor="name">
-     Age Limit
-          </label>
-          <input
-            type="text"
-           
-            name="ageLimit"
-            value={formData.ageLimit}
-            onChange={handleChange}
-            className="w-full border border-gray-300 p-2 rounded-md"
-            required
-          />
-        </div>
-
-
-        {/* highlights */}
-        <div className="mb-2">
-          <label
-            className="block text-gray-700 font-poppins"
-            htmlFor="overview"
-          >
-          Highlights
-          </label>
-          <textarea
-          
-            name="highlights"
-            value={formData.highlights}
-            onChange={handleChange}
-            className="w-full border border-gray-300 p-2 rounded-md"
-            rows="4"
-            required
-          ></textarea>
-        </div>
-
-
-        {/* itinerary */}
-
-        <div className="mb-2">
-          <label
-            className="block text-gray-700 font-poppins"
-            htmlFor="overview"
-          >
-       Itinerary
-          </label>
-          <textarea
-          
-            name="itinerary"
-            value={formData.itinerary}
-            onChange={handleChange}
-            className="w-full border border-gray-300 p-2 rounded-md"
-            rows="4"
-            required
-          ></textarea>
-        </div>
-
-
-        {/* facilities */}
-
-        <div className="mb-2">
-          <label
-            className="block text-gray-700 font-poppins"
-            htmlFor="overview"
-          >
-     Facilities
-          </label>
-          <textarea
-          
-            name="facilities"
-            value={formData.facilities}
-            onChange={handleChange}
-            className="w-full border border-gray-300 p-2 rounded-md"
-            rows="4"
-            required
-          ></textarea>
-        </div>
-
-
-        {/* inclusions */}
-
-        <div className="mb-2">
-          <label
-            className="block text-gray-700 font-poppins"
-            htmlFor="overview"
-          >
-  Inclusions
-          </label>
-          <textarea
-          
-            name="inclusions"
-            value={formData.inclusions}
-            onChange={handleChange}
-            className="w-full border border-gray-300 p-2 rounded-md"
-            rows="4"
-            required
-          ></textarea>
-        </div>
-
-             {/* overview */}
-             <div className="mb-2">
-          <label
-            className="block text-gray-700 font-poppins"
-            htmlFor="overview"
-          >
-            Overview
-          </label>
-          <textarea
-            id="overview"
-            name="overview"
-            value={formData.overview}
-            onChange={handleChange}
-            className="w-full border border-gray-300 p-2 rounded-md"
-            rows="4"
-            required
-          ></textarea>
-        </div>
-
-
-        {/* notes */}
-
-        <div className="mb-2">
-          <label
-            className="block text-gray-700 font-poppins"
-            htmlFor="overview"
-          >
- Note
-          </label>
-          <textarea
-          
-            name="note"
-            value={formData.note}
-            onChange={handleChange}
-            className="w-full border border-gray-300 p-2 rounded-md"
-            rows="4"
-            required
-          ></textarea>
-        </div>
-
-
-
-      
         <div className="mt-4">
           <button
             type="submit"
@@ -289,5 +125,22 @@ const AddTour = ({ onAddTour }) => {
     </div>
   );
 };
+
+const inputFields = [
+  { name: "name", label: "Tour Name" },
+  { name: "price", label: "Price" },
+  { name: "location", label: "Location" },
+  { name: "overview", label: "Overview" },
+  { name: "difficulty", label: "Difficulty" },
+  { name: "duration", label: "Duration" },
+  { name: "altitude", label: "Altitude" },
+  { name: "ageLimit", label: "Age Limit" },
+  { name: "highlights", label: "Highlights" },
+  { name: "itinerary", label: "Itinerary" },
+  { name: "facilities", label: "Facilities" },
+  { name: "inclusions", label: "Inclusions" },
+  { name: "note", label: "Note" },
+  { name: "images", label: "Images (comma-separated URLs)" },
+];
 
 export default AddTour;

@@ -5,6 +5,7 @@ import { TbBrandBooking } from "react-icons/tb";
 import { LiaBlogSolid } from "react-icons/lia";
 import { CgWebsite } from "react-icons/cg";
 import { useNavigate } from 'react-router-dom';
+import {  toast } from 'react-toastify';
 
 const DashboardCard = ({ icon, title, value }) => {
   const IconComponent = icon; 
@@ -25,6 +26,7 @@ const DashboardData = () => {
   const handleLogout = () => {
 
     localStorage.removeItem('token');
+    toast("Logged Out!")
     navigate('/login')
 
   };

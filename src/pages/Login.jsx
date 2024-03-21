@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import {server} from '../utils.js'
 import { useNavigate } from 'react-router-dom';
+import {  toast } from 'react-toastify';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -27,7 +28,7 @@ const Login = () => {
       if (response.status === 200) {
         const { token } = response.data;
         localStorage.setItem('token', token);
-        console.log('Login successful');
+        toast("Logged In Sucessfully!")
         setEmail('');
         setPassword('');
         setEmailError('');

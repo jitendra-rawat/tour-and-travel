@@ -6,6 +6,11 @@ import { Suspense } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Dashboard from './pages/dashboard/Dashboard';
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
+
+
+
 
 const isAdminLoggedIn = () => {
   const accessToken = localStorage.getItem('token');
@@ -45,6 +50,7 @@ const App = () => {
 
       </Routes>
       <Footer />
+      <ToastContainer />
     </Router>
   );
 };

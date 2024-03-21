@@ -13,17 +13,11 @@ const AddBlog = ({ onAddBlog }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Perform form validation if needed
-    onAddBlog(formData);
-    // Reset form after submission
-    setFormData({
-      title: '',
-      description: '',
-    });
+ 
   };
 
   return (
-    <div className="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-md">
+    <div className="max-w-6xl mx-auto bg-white p-8 rounded-lg shadow-md">
       <h2 className="text-2xl font-bold mb-4 text-center font-poppins">Add Blog</h2>
 
       <form onSubmit={handleSubmit} className='w-full'>
