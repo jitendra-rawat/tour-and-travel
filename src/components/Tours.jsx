@@ -2,6 +2,7 @@ import React,{useState,useEffect} from 'react';
 import { Link } from 'react-router-dom'; 
 import TourCard from './TourCard';
 import axios from 'axios';
+import {server} from '../utils'
 
 const Tours = () => {
 
@@ -11,7 +12,7 @@ const Tours = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:4000/tour/all');
+        const response = await axios.get(`${server}/tour/all`);
         setTours(response.data);
       } catch (error) {
         console.error('Error fetching tour data:', error);

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Modal from 'react-modal'
 import { toast } from 'react-toastify';
+import {server} from './utils'
 const Blogs = () => {
   const [blogs, setBlogs] = useState([]);
   const [selectedBlog,setSelectedBlog] = useState(null)
@@ -17,7 +18,7 @@ const Blogs = () => {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const response = await axios.get('http://localhost:4000/blog/get-blog');
+        const response = await axios.get(`${server}/blog/get-blog`);
         setBlogs(response.data);
       } catch (error) {
         console.error('Error fetching blogs:', error);
@@ -51,7 +52,7 @@ const Blogs = () => {
   const handleSubmitUpdate = async () => {
     try {
      
-      await axios.put(`http://localhost:4000/blog/update/${selectedBlog}`, { ...formData});
+      await axios.put(`${server}/blog/update/${selectedBlog}`, { ...formData});
       
       toast.success("Blog has been Updated Sucessfully")
 
@@ -71,7 +72,7 @@ const Blogs = () => {
 
   const handleDelete = async (blogId) => {
     try {
-      await axios.delete(`http://localhost:4000/blog/delete/${blogId}`);
+      await axios.delete(`${server}/blog/delete/${blogId}`);
       
       setBlogs(prevBlogs => prevBlogs.filter(blog => blog._id !== blogId));
       toast("Blog deleted successfully!");

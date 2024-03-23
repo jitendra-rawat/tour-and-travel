@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -7,22 +8,22 @@ const Footer = () => {
 
         <div className="flex justify-between items-start">
 
-          {/* First Section: Logo and Description */}
+          {/* First Section:*/}
           <div className="mb-4  ">
-          <h2 className='text-4xl text-white mb-2 font-bold font-poppins'>Travelify</h2>
+          <h2 className='text-4xl text-white mb-2 font-bold font-poppins'>Busy Boots Travel</h2>
             <p className=" text-base font-poppins w-[300px]">Discover new horizons with our premier tour and travel services. From breathtaking landscapes to cultural gems, let us guide your journey.</p>
           </div>
 
-          {/* Second Section: Quick Links */}
+          {/* Second Section: */}
           <div className="mb-4  ">
             <h4 className="text-lg font-bold mb-2 font-poppins">Quick Links</h4>
             <div className='flex flex-col'>
-              <a href="#" className="text-gray-300 hover:text-white  font-poppins">Home</a>
-              <a href="#" className="text-gray-300 hover:text-white font-poppins">Tours</a>
-              <a href="#" className="text-gray-300 hover:text-white font-poppins" >Blogs</a>
-              <a href="#" className="text-gray-300 hover:text-white font-poppins" >About Us</a>
-              <a href="#" className="text-gray-300 hover:text-white font-poppins" >Contact Us</a>
-              <a href="#" className="text-gray-300 hover:text-white font-poppins" >Login</a>
+             <Link to={'/'}  className="text-gray-300 hover:text-white  font-poppins">Home</Link>
+             <Link to={'/tour'}   className="text-gray-300 hover:text-white font-poppins">Tours</Link>
+             <Link to={'/blogs'}  className="text-gray-300 hover:text-white font-poppins" >Blogs</Link>
+             <Link to={'/about'}  className="text-gray-300 hover:text-white font-poppins" >About Us</Link>
+             <Link to={'/contact'}  className="text-gray-300 hover:text-white font-poppins" >Contact Us</Link>
+             <Link to={'/login'}  className="text-gray-300 hover:text-white font-poppins" >Admin Login</Link>
             </div>
           </div>
 

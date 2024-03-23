@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Hero = () => {
   return (
@@ -8,7 +9,9 @@ const Hero = () => {
         <h2 className='text-xl text-black mb-8 text-left font-poppins'>Discover amazing destinations and create unforgettable memories.</h2>
         
         <div className='flex justify-start'>
-          <button className='bg-white font-poppins text-black hover:scale-110 hover:text-gray-200 hover:bg-black px-8 py-3 rounded-full shadow-lg font-semibold text-lg transition duration-300 ease-in-out'>Book Now</button>
+      <Link to={'/tour'}>
+     <button className='bg-white font-poppins text-black hover:scale-110 hover:text-gray-200 hover:bg-black px-8 py-3 rounded-full shadow-lg font-semibold text-lg transition duration-300 ease-in-out'>Book Now</button>
+     </Link>   
         </div>
       </div>
     </section>

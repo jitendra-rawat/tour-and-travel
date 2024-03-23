@@ -28,7 +28,7 @@ const TourPackages = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:4000/tour/all');
+        const response = await axios.get(`${server}/tour/all`);
         setTours(response.data);
       } catch (error) {
         console.error('Error fetching tour data:', error);
@@ -82,7 +82,7 @@ const TourPackages = () => {
   const handleSubmitUpdate = async () => {
     try {
       const allImages = [...formData.images, ...additionalImages];
-      await axios.put(`http://localhost:4000/tour/update/${selectedTour}`, { ...formData, images: allImages });
+      await axios.put(`${server}/tour/update/${selectedTour}`, { ...formData, images: allImages });
 
       setFormData({
         name: "",
@@ -109,7 +109,7 @@ const TourPackages = () => {
 
   const handleDelete = async (tourId) => {
     try {
-      await axios.delete(`http://localhost:4000/tour/delete/${tourId}`);
+      await axios.delete(`${server}/tour/delete/${tourId}`);
       
       setTours(prevTours => prevTours.filter(tour => tour._id !== tourId));
       toast("Tour deleted successfully!");

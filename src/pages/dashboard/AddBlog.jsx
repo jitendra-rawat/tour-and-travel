@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
+import {server} from './utils'
 
 const AddBlog = () => {
   const [formData, setFormData] = useState({
@@ -13,7 +14,7 @@ const AddBlog = () => {
     e.preventDefault();
 
     try {
-      await axios.post('http://localhost:4000/blog/post-blog', formData);
+      await axios.post(`${server}/blog/post-blog`, formData);
       toast.success("Blog has been added");
       setFormData({
         title: '',

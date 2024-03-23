@@ -2,9 +2,10 @@ import React, { useEffect, useMemo } from "react";
 import { useTable } from "react-table";
 import axios from "axios";
 import { toast } from "react-toastify";
+import {server} from './utils'
 
 const Booking = () => {
-  const [bookings, setBookings] = React.useState([]);
+  const [bookings, setBookings] = useState([]);
 
   useEffect(() => {
     fetchBookings();
@@ -13,7 +14,7 @@ const Booking = () => {
   const fetchBookings = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:4000/booking/get-bookings"
+        `${server}/booking/get-bookings`
       );
       setBookings(response.data);
     } catch (error) {
@@ -61,7 +62,7 @@ const Booking = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:4000/booking/delete/${id}`);
+      await axios.delete(`${server}/booking/delete/${id}`);
       fetchBookings(); 
       toast.success("Booking has been Deleted")
       console.log(`Booking with ID ${id} deleted successfully`);

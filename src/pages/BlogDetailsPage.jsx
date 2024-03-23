@@ -1,32 +1,38 @@
-import React from 'react';
-
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 import BlogDetails from '../components/BlogDetails';
+import {server} from '../utils'
 
 const BlogDetailsPage = () => {
- 
-  const blogs = [
-    {
-      id: 1,
-      title: "Blog Title 1",
-      description: "Description of Blog 1 goes here. This is a short description.Description of Blog 1 goes here. This is a short description.",
-      imageSrc: "https://cdn.pixabay.com/photo/2017/09/23/19/07/vishnu-temple-2779856_1280.jpg"
-    },
+  const { id } = useParams();
+  const [blog, setBlog] = useState(null);
 
-  ];
+  useEffect(() => {
+    const fetchBlog = async () => {
+      try {
+        const response = await axios.get(`${server}/blog/get-blog/${id}`);
+        setBlog(response.data); 
+      } catch (error) {
+        console.error('Error fetching blog:', error);
+      }
+    };
+
+    fetchBlog();
+  }, [id]);
 
   return (
     <div className='max-w-7xl mx-auto container my-20'>
-    
-      <div className="flex flex-col ">
-        {blogs.map(blog => (
-          <BlogDetails
-            key={blog.id}
-            title={blog.title}
-            description={blog.description}
-            imageSrc={blog.imageSrc}
-          />
-        ))}
-      </div>
+      {blog ? (
+        <BlogDetails
+          key={blog._id}
+          title={blog.title}
+          description={blog.description}
+          imageSrc={blog.imageSrc}
+        />
+      ) : (
+        <p>Loading...</p>
+      )}
     </div>
   );
 };

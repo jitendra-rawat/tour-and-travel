@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom'; 
 import TourDetail from '../components/TourDetail';
 import axios from 'axios'; 
+import { server } from '../utils';
 
 const TourDetailPage = () => {
     const [tour, setTour] = useState(null); 
@@ -11,7 +12,7 @@ const TourDetailPage = () => {
        
         const fetchTourData = async () => {
             try {
-                const response = await axios.get(`http://localhost:4000/tour/${id}`);
+                const response = await axios.get(`${server}/tour/${id}`);
        
                 setTour(response.data); 
             } catch (error) {

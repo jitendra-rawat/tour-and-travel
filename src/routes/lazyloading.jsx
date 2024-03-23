@@ -9,6 +9,10 @@ const ContactPage = lazy( () => import('../pages/Contact') )
 
 const BlogsPage = lazy( () => import('../pages/Blogs') )
 
+const BlogsDetailPage = lazy( () => import('../pages/BlogDetailsPage') )
+
+const TourPage = lazy( () => import('../components/Tours') )
+
 const coreRoutes = [
   {
     path: "/about",
@@ -17,13 +21,18 @@ const coreRoutes = [
   },
   {
     path: "/tour/:id",
-    title: "Tour",
+    title: "Tour id",
     component: TourDetailPage,
   },
   {
+    path: "/tour",
+    title: "Tour",
+    component: TourPage,
+  },
+  {
     path: "/blogs/:id",
-    title: "Blogs Details",
-    component: BlogDetailsPage,
+    title: "Blogs Detail",
+    component: BlogsDetailPage,
   },
   {
     path: "/signup",

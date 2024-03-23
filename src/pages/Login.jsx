@@ -28,7 +28,7 @@ const Login = () => {
       if (response.status === 200) {
         const { token } = response.data;
         localStorage.setItem('token', token);
-        toast("Logged In Sucessfully!")
+        toast("Welcome Back Admin!")
         setEmail('');
         setPassword('');
         setEmailError('');
@@ -59,7 +59,7 @@ const Login = () => {
                 className={`appearance-none rounded-none relative block w-full px-3 py-2 border ${
                   emailError ? 'border-red-500' : 'border-gray-300'
                 } placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm`}
-                placeholder="Email address"
+                placeholder="admin@gmail.com"
                 value={email}
                 onChange={(e) => {
                   setEmail(e.target.value);
@@ -78,7 +78,7 @@ const Login = () => {
                 autoComplete="current-password"
                 required
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="Password"
+                placeholder="admin"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />

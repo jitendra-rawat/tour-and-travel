@@ -9,7 +9,7 @@ const Messages = () => {
   useEffect(() => {
     const fetchMessages = async () => {
       try {
-        const response = await axios.get('http://localhost:4000/message/get-message');
+        const response = await axios.get(`${server}/message/get-message`);
         setMessages(response.data);
       } catch (error) {
         console.error('Error fetching messages:', error);
@@ -20,7 +20,7 @@ const Messages = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:4000/message/delete/${id}`);
+      await axios.delete(`${server}/message/delete/${id}`);
       setMessages(prevMessages => prevMessages.filter(message => message.id !== id));
       toast.success('Message deleted successfully!');
     } catch (error) {

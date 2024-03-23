@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import {server} from '../utils'
 
 const Booking = ({ tourName }) => {
 
@@ -22,7 +23,7 @@ const Booking = ({ tourName }) => {
     e.preventDefault();
 
     try {
-      await axios.post('http://localhost:4000/booking/post-bookings', formData);
+      await axios.post(`${server}/booking/post-bookings`, formData);
       
    setFormData({
     name: '',
@@ -56,7 +57,14 @@ const Booking = ({ tourName }) => {
         </div>
         <div className="mb-6">
           <label htmlFor="date" className="block text-gray-700 font-poppins font-semibold mb-2">Date</label>
-          <input type="date" id="date" name="date" value={formData.date} onChange={handleChange} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" />
+          <input 
+            type="date" 
+            id="date" 
+            name="date" 
+            value={formData.date ? formData.date.slice(0, 10) : ''} 
+            onChange={handleChange} 
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" 
+          />
         </div>
 
         <div className="mb-6">

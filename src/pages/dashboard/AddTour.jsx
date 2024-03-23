@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { toast } from 'react-toastify';
+import {server} from './utils'
 
 const AddTour = () => {
   
@@ -54,7 +55,7 @@ const AddTour = () => {
 
     try {
       const allImages = [...formData.images, ...additionalImages];
-      await axios.post("http://localhost:4000/tour/add-tour", { ...formData, images: allImages });
+      await axios.post(`${server}/tour/add-tour`, { ...formData, images: allImages });
 
       setFormData(initialState);
       setAdditionalImages([]);
