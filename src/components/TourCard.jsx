@@ -49,7 +49,7 @@ const TourCard = ({ images, title, price, location, duration }) => {
 
       <div className="px-6 pb-4">
    <Link to={'/tour'}>
-  <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+  <button className="bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
           Book Now
         </button>
 

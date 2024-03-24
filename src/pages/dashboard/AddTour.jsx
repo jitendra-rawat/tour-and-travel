@@ -103,7 +103,7 @@ const AddTour = () => {
     placeholder="Enter image URL"
   />
 ))}
-{additionalImages.length < 4 && (
+{additionalImages.length < 3 && (
   <button type="button" onClick={handleAddImage} className="mt-2 bg-gray-700 hover:bg-gray-600 text-white font-semibold px-4 py-2 rounded-md">
     Add Image
   </button>

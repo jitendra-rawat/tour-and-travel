@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Modal from 'react-modal';
 import { toast } from 'react-toastify';
+import { server } from './utils';
 
 const TourPackages = () => {
   const [tours, setTours] = useState([]);
@@ -45,13 +46,17 @@ const TourPackages = () => {
       [name]: name === "images" ? value.split(",").map(url => url.trim()) : value,
     }));
   };
-  
+
   const handleAddImage = () => {
-    setAdditionalImages((prevImages) => [...prevImages, ""]);
+    if (additionalImages.length < 3) {
+      setAdditionalImages(prevImages => [...prevImages, ""]);
+    } else {
+      toast.error("Maximum of four images allowed.");
+    }
   };
 
   const handleImageChange = (index, value) => {
-    setAdditionalImages((prevImages) => {
+    setAdditionalImages(prevImages => {
       const updatedImages = [...prevImages];
       updatedImages[index] = value;
       return updatedImages;
@@ -75,7 +80,7 @@ const TourPackages = () => {
       facilities: tour.facilities,
       inclusions: tour.inclusions,
       note: tour.note,
-    }); 
+    });
     setModalOpen(true);
   };
 
@@ -110,7 +115,7 @@ const TourPackages = () => {
   const handleDelete = async (tourId) => {
     try {
       await axios.delete(`${server}/tour/delete/${tourId}`);
-      
+
       setTours(prevTours => prevTours.filter(tour => tour._id !== tourId));
       toast("Tour deleted successfully!");
     } catch (error) {
@@ -131,7 +136,7 @@ const TourPackages = () => {
           </div>
         </div>
       ))}
-      
+
       <Modal isOpen={modalOpen}>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           {inputFields.map((field, index) => (
@@ -157,9 +162,11 @@ const TourPackages = () => {
                       placeholder="Enter image URL"
                     />
                   ))}
-                  <button type="button" onClick={handleAddImage} className="mt-2 bg-gray-700 hover:bg-gray-600 text-white font-semibold px-4 py-2 rounded-md">
-                    Add Image
-                  </button>
+                  {additionalImages.length < 3 && (
+                    <button type="button" onClick={handleAddImage} className="mt-2 bg-gray-700 hover:bg-gray-600 text-white font-semibold px-4 py-2 rounded-md">
+                      Add Image
+                    </button>
+                  )}
                 </>
               ) : (
                 <input

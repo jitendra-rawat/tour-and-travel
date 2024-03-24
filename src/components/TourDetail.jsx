@@ -23,7 +23,7 @@ const TourDetail = ({ tour, images }) => {
 
   const settings = {
     dots: true,
-    infinite: true,
+    infinite:false,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -32,7 +32,7 @@ const TourDetail = ({ tour, images }) => {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden">
+    <div className="bg-white rounded-lg shadow-md overflow-hidden p-2">
       <div className="relative">
         <Slider {...settings}>
           {images.map((image, index) => (
@@ -55,27 +55,25 @@ const TourDetail = ({ tour, images }) => {
       
 
 {/* highlights */}
+
+
 <div className="my-20">
   <div className="flex gap-2">
     <BsHighlights size={30} />
-    <h2 className="text-xl font-poppins font-semibold mb-4">
-      Highlights
-    </h2>
+    <h2 className="text-xl font-poppins font-semibold mb-4">Highlights</h2>
   </div>
-  <ul className="list-disc list-inside text-base font-poppins">
+  <ul className="text-base font-poppins">
     {tour.highlights.map((highlight, index) => (
-      <li key={index} className="mb-2">
-        <ul className="list-disc list-inside">
-          {highlight.split(',').map((part, i) => (
-            <li key={i}>
-              {part.trim()}
-            </li>
-          ))}
-        </ul>
+      <li key={index} className="mb-4">
+        {highlight.split(',').map((part, i) => (
+          <div key={i}>{part.trim()}</div>
+        ))}
       </li>
     ))}
   </ul>
 </div>
+
+
 
 
 
@@ -114,10 +112,11 @@ const TourDetail = ({ tour, images }) => {
           </div>
         </div>
 
-        {/* itinerary */}
+
+
 
 {/* itinerary */}
-<div className="my-20">
+<div className="my-20 px-2">
   <div className="flex gap-2">
     <MdCardTravel size={30} />
     <p
@@ -135,21 +134,25 @@ const TourDetail = ({ tour, images }) => {
           onClick={() => toggleAccordion(index)}
         >
           <span className="py-2 text-base font-poppins">
-            Day {index + 1}
+            Click Here to See
           </span>
           <span className="material-icons text-gray-400">
             {openAccordionIndex === index ? "arrow_upward" : "arrow_downward"}
           </span>
         </h3>
         {openAccordionIndex === index && (
-          <p className="text-gray-600 mt-2 py-2 text-base font-poppins">
-            {item.itinerary}
-          </p>
+          <ul className="text-gray-600 mt-2 py-2 text-base font-poppins">
+            {item.split(',').map((part, i) => (
+              <li key={i}>{part.trim()}</li>
+            ))}
+          </ul>
         )}
       </div>
     ))}
   </div>
 </div>
+
+
 
 
 
@@ -161,73 +164,67 @@ const TourDetail = ({ tour, images }) => {
           <div>
 
 {/* features */}
-<div className="my-20">
+
+
+<div className="my-20 px-2">
   <div className="flex gap-2">
     <MdFeaturedPlayList size={30} />
-    <h2 className="text-xl font-poppins font-semibold mb-4">
-      Features
-    </h2>
+    <h2 className="text-xl font-poppins font-semibold mb-4">Features</h2>
   </div>
-  <ul className="list-disc list-inside text-base font-poppins">
+  <ul className="text-base font-poppins">
     {tour.facilities.map((facility, index) => (
       <li key={index} className="mb-2">
-        <ul className="list-disc list-inside">
-          {facility.split(',').map((part, i) => (
-            <li key={i}>
-              {part.trim()}
-            </li>
-          ))}
-        </ul>
+        {facility.split(',').map((part, i) => (
+          <div key={i}>{part.trim()}</div>
+        ))}
       </li>
     ))}
   </ul>
 </div>
+
+
 
 {/* inclusions */}
-<div className="my-20">
+
+<div className="my-20 px-2">
   <div className="flex gap-2">
     <IoAddCircle size={30} />
-    <h2 className="text-xl font-poppins font-semibold mb-4">
-      Inclusions
-    </h2>
+    <h2 className="text-xl font-poppins font-semibold mb-4">Inclusions</h2>
   </div>
-  <ul className="list-disc list-inside text-base font-poppins">
+  <ul className="text-base font-poppins">
     {tour.inclusions.map((inclusionGroup, index) => (
       <li key={index} className="mb-4">
-        <ul className="list-disc list-inside">
-          {inclusionGroup.split(',').map((inclusion, i) => (
-            <li key={i} className="mb-1">
-              {inclusion.trim()}
-            </li>
-          ))}
-        </ul>
+        {inclusionGroup.split(',').map((inclusion, i) => (
+          <div key={i}>{inclusion.trim()}</div>
+        ))}
       </li>
     ))}
   </ul>
 </div>
 
+
+
 {/* notes */}
-<div className="my-20">
+
+
+<div className="my-20 px-2">
   <div className="flex gap-2">
     <MdNoteAlt size={30} />
-    <h2 className="text-xl font-poppins font-semibold mb-4">
-      Note
-    </h2>
+    <h2 className="text-xl font-poppins font-semibold mb-4">Note</h2>
   </div>
-  <ul className="list-disc list-inside text-base font-poppins">
+  <ul className="text-base font-poppins">
     {tour.note.map((noteGroup, index) => (
-      <li key={index} className="mb-2">
-        <ul className="list-disc list-inside">
-          {noteGroup.split(',').map((note, i) => (
-            <li key={i}>
-              {note.trim()}
-            </li>
-          ))}
-        </ul>
+      <li key={index} className="mb-4">
+        {noteGroup.split(',').map((note, i) => (
+          <div key={i}>{note.trim()}</div>
+        ))}
       </li>
     ))}
   </ul>
 </div>
+
+
+
 
 
           </div>

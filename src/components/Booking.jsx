@@ -79,12 +79,12 @@ const Booking = ({ tourName }) => {
             name="tourName" 
             value={formData.tourName} 
             readOnly={true} 
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" 
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none " 
           />
         </div>
 
         <div className='flex justify-center'>
-          <button type="submit" className="bg-blue-500 font-poppins text-white font-semibold px-6 py-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Book Now</button>
+          <button type="submit" className="bg-gray-900 font-poppins text-white font-semibold px-6 py-2 rounded-lg hover:bg-gray-600 focus:outline-none focus:bg-gray-700">Book Now</button>
         </div>
 
         <p className='mt-8 block text-gray-700 text-xs font-poppins font-semibold mb-2'>Check-Post Charges : To be paid by the customer directly, charges not included in the package.</p>
