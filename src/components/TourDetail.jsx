@@ -126,7 +126,7 @@ const TourDetail = ({ tour, images }) => {
       Itinerary
     </p>
   </div>
-  <div className="accordion">
+  <div>
     {tour.itinerary.map((item, index) => (
       <div key={index} className="mb-4 border-b border-gray-300">
         <h3
@@ -134,7 +134,8 @@ const TourDetail = ({ tour, images }) => {
           onClick={() => toggleAccordion(index)}
         >
           <span className="py-2 text-base font-poppins">
-            Click Here to See
+          
+            {"Day " + (index + 1)}
           </span>
           <span className="material-icons text-gray-400">
             {openAccordionIndex === index ? "arrow_upward" : "arrow_downward"}
@@ -142,15 +143,15 @@ const TourDetail = ({ tour, images }) => {
         </h3>
         {openAccordionIndex === index && (
           <ul className="text-gray-600 mt-2 py-2 text-base font-poppins">
-            {item.split(',').map((part, i) => (
-              <li key={i}>{part.trim()}</li>
-            ))}
+            <li key={index}>{item.trim()}</li>
           </ul>
         )}
       </div>
     ))}
   </div>
 </div>
+
+
 
 
 

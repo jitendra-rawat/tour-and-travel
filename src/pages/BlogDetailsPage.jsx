@@ -28,7 +28,7 @@ const BlogDetailsPage = () => {
           key={blog._id}
           title={blog.title}
           description={blog.description}
-          imageSrc={blog.imageSrc}
+          imageSrc={blog.image}
         />
       ) : (
         <p>Loading...</p>

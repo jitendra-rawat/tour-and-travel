@@ -82,14 +82,14 @@ const Blogs = () => {
   };
 
   return (
-    <div className="flex flex-wrap justify-between">
+    <div className="flex flex-wrap justify-between mt-36 z-50">
       {blogs.map((blog) => (
         <div key={blog._id} className="bg-white w-[300px] h-[200px] rounded-lg shadow-md mx-4 my-6">
           <div className="p-6">
             <h2 className="text-xl font-bold mb-2">{blog.title}</h2>
             <p className="text-gray-700 mb-2 text-base">{blog.description}</p>
 
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between gap-4">
               <button   onClick={() => handleEdit(blog)} className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded mr-2">
                 Update
               </button>

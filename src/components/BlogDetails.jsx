@@ -2,7 +2,7 @@ import React from 'react';
 
 const BlogDetails = ({ imageSrc, title, description }) => {
   return (
-    <div className="bg-white shadow-lg rounded-lg px-8 py-4  my-10">
+    <div className="bg-white shadow-lg rounded-lg px-8 py-4  my-20">
 
       
         <img src={imageSrc} alt="Blog" className="max-w-lg mx-auto container object-cover h-[350px] rounded-md mb-2" />
