@@ -11,7 +11,7 @@ const DashboardCard = ({ icon, title, value }) => {
   const IconComponent = icon; 
 
   return (
-    <div className='bg-white w-[300px] h-[250px] py-20 px-4 rounded-xl m-4 cursor-pointer hover:scale-90 hover:text-white hover:bg-black '>
+    <div className='bg-white w-[300px] h-[250px] py-20 px-4 rounded-xl m-4 cursor-pointer hover:scale-90 hover:text-white hover:bg-gray-300 '>
       {icon && <IconComponent size={50}  className='mx-auto' />} 
       <p className='text-lg text-gray-700 text-center font-poppins font-bold '>{title}</p>
       <p className='text-4xl text-gray-700 text-center font-poppins font-semibold'>{value}</p>
@@ -43,7 +43,7 @@ const DashboardData = () => {
 
   return (
     <>
-  <div className='flex justify-end mb-4'>
+  <div className='flex justify-end mb-4 pt-8 '>
 
  
     <button onClick={handleLogout} className='bg-gray-700 text-white px-8 py-2 rounded-lg cursor-pointer hover:bg-black hover:text-white'>Logout</button>

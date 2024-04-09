@@ -82,14 +82,14 @@ const Blogs = () => {
   };
 
   return (
-    <div className="flex flex-wrap justify-between mt-36 z-50">
+    <div className="flex flex-wrap justify-between  z-50">
       {blogs.map((blog) => (
-        <div key={blog._id} className="bg-white w-[300px] h-[200px] rounded-lg shadow-md mx-4 my-6">
+        <div key={blog._id} className="bg-white w-[300px]  rounded-lg shadow-md mx-4 my-6">
           <div className="p-6">
             <h2 className="text-xl font-bold mb-2">{blog.title}</h2>
-            <p className="text-gray-700 mb-2 text-base">{blog.description}</p>
+            {/* <p className="text-gray-700 mb-2 text-base">{blog.description}</p> */}
 
-            <div className="flex items-center justify-between gap-4">
+            <div >
               <button   onClick={() => handleEdit(blog)} className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded mr-2">
                 Update
               </button>
@@ -102,9 +102,9 @@ const Blogs = () => {
       ))}
               
 
-              <Modal isOpen={modalOpen}>
+              <Modal isOpen={modalOpen} className='mt-36 max-w-2xl container mx-auto'>
 
-              <form onSubmit={handleSubmitUpdate} className='w-full'>
+              <form onSubmit={handleSubmitUpdate} className=' '>
 
 <div className="mb-4">
   <label htmlFor="title" className="block text-gray-700 font-poppins font-semibold mb-2">Title</label>
@@ -121,9 +121,9 @@ const Blogs = () => {
   <input name="image" value={formData.image} onChange={handleChange} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none "  required  />
 </div>
 
-<div className='flex justify-center'>
+<div className='flex justify-center gap-4'>
   <button type="submit" className="bg-gray-700 font-poppins text-white font-semibold px-6 py-2 rounded-lg hover:bg-gray-900 focus:outline-none ">Update</button>
-  <button type="submit" className="bg-gray-700 font-poppins text-white font-semibold px-6 py-2 rounded-lg hover:bg-gray-900 focus:outline-none ">Close</button>
+  <button onClick={ () => setModalOpen(false) } className="bg-gray-700 font-poppins text-white font-semibold px-6 py-2 rounded-lg hover:bg-gray-900 focus:outline-none ">Close</button>
 </div>
 
 </form>

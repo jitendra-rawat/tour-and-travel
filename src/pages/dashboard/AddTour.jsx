@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { toast } from 'react-toastify';
-import {server} from './utils'
+import { server } from './utils';
 
 const AddTour = () => {
   
@@ -16,7 +16,7 @@ const AddTour = () => {
     altitude: "",
     ageLimit: "",
     highlights: "", 
-    itinerary: [], // Change to array
+    itinerary: [], 
     facilities: "", 
     inclusions: "", 
     note: "", 
@@ -24,60 +24,49 @@ const AddTour = () => {
 
   const [formData, setFormData] = useState(initialState);
   const [additionalImages, setAdditionalImages] = useState([]);
-  const [additionalItinerary, setAdditionalItinerary] = useState([]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({
+    setFormData(prevData => ({
       ...prevData,
-      [name]: name === "images" ? value.split(",").map(url => url.trim()) : value,
+      [name]: value
     }));
   };
 
   const handleAddImage = () => {
-    if (additionalImages.length < 4) {
-      setAdditionalImages((prevImages) => [...prevImages, ""]);
+    if (additionalImages.length < 3) {
+      setAdditionalImages(prevImages => [...prevImages, ""]);
     } else {
-      toast("You can add up to 4 images only!");
+      toast.error("You can add up to 3 images only!");
     }
   };
 
-  const handleAddItinerary = () => {
-    setAdditionalItinerary((prevItinerary) => [...prevItinerary, ""]);
-  };
-
-  const handleItineraryChange = (index, value) => {
-    setAdditionalItinerary((prevItinerary) => {
-      const updatedItinerary = [...prevItinerary];
-      updatedItinerary[index] = value;
-      return updatedItinerary;
+  const handleImageChange = (index, value) => {
+    setAdditionalImages(prevImages => {
+      const updatedImages = [...prevImages];
+      updatedImages[index] = value;
+      return updatedImages;
     });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     try {
-      // Filter out empty strings from the itinerary
-      const filteredItinerary = formData.itinerary.filter(item => item.trim() !== "");
-  
       const allImages = [...formData.images, ...additionalImages];
-      const allItinerary = [...filteredItinerary, ...additionalItinerary];
-      await axios.post(`${server}/tour/add-tour`, { ...formData, images: allImages, itinerary: allItinerary });
-  
+      await axios.post(`${server}/tour/add-tour`, { ...formData, images: allImages });
+
       setFormData(initialState);
       setAdditionalImages([]);
-      setAdditionalItinerary([]);
-      toast("Added New Tour Successfully!");
-  
+      toast.success("Added New Tour Successfully!");
     } catch (error) {
       console.error("Error adding tour:", error);
+      toast.error("Failed to add tour");
     }
   };
-  
 
   return (
-    <div className=" bg-white rounded-lg p-8 mb-20 w-[900px] mx-auto container h-[700px] overflow-y-scroll">
+    <div className="bg-white rounded-lg p-8 my-20 w-[900px] mx-auto container h-[700px] overflow-y-scroll">
       <h2 className="font-poppins text-2xl text-center mb-4 font-bold">
         Add New Tour
       </h2>
@@ -91,53 +80,22 @@ const AddTour = () => {
               >
                 {field.label}
               </label>
-              {field.name === "images" || field.name === "itinerary" ? (
+              {field.name === "images" ? (
                 <>
-                  <textarea
-                    name={field.name}
-                    value={field.name === "images" ? formData[field.name].join(",") : additionalItinerary.join("\n")}
-                    onChange={field.name === "images" ? handleChange : (e) => handleItineraryChange(0, e.target.value)}
-                    className="w-full border border-gray-300 p-2 rounded-md"
-                    rows={field.name === "images" ? "4" : "2"}
-                    required
-                  ></textarea>
-
-                  {field.name === "images" && (
-                    <>
-                      {additionalImages.map((image, index) => (
-                        <input
-                          key={index}
-                          type="text"
-                          value={image}
-                          onChange={(e) => handleImageChange(index, e.target.value)}
-                          className="w-full border border-gray-300 p-2 rounded-md mt-2"
-                          placeholder="Enter image URL"
-                        />
-                      ))}
-                      {additionalImages.length < 3 && (
-                        <button type="button" onClick={handleAddImage} className="mt-2 bg-gray-700 hover:bg-gray-600 text-white font-semibold px-4 py-2 rounded-md">
-                          Add Image
-                        </button>
-                      )}
-                    </>
-                  )}
-
-                  {field.name === "itinerary" && (
-                    <>
-                      {additionalItinerary.slice(1).map((item, index) => (
-                        <input
-                          key={index + 1}
-                          type="text"
-                          value={item}
-                          onChange={(e) => handleItineraryChange(index + 1, e.target.value)}
-                          className="w-full border border-gray-300 p-2 rounded-md mt-2"
-                          placeholder={`Enter itinerary for Day ${index + 2}`}
-                        />
-                      ))}
-                      <button type="button" onClick={handleAddItinerary} className="mt-2 bg-gray-700 hover:bg-gray-600 text-white font-semibold px-4 py-2 rounded-md">
-                        Add Itinerary
-                      </button>
-                    </>
+                  {additionalImages.map((image, index) => (
+                    <input
+                      key={index}
+                      type="text"
+                      value={image}
+                      onChange={(e) => handleImageChange(index, e.target.value)}
+                      className="w-full border border-gray-300 p-2 rounded-md mt-2"
+                      placeholder="Enter image URL"
+                    />
+                  ))}
+                  {additionalImages.length < 3 && (
+                    <button type="button" onClick={handleAddImage} className="mt-2 bg-gray-700 hover:bg-gray-600 text-white font-semibold px-4 py-2 rounded-md">
+                      Add Image
+                    </button>
                   )}
                 </>
               ) : (

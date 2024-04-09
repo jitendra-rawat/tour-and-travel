@@ -143,7 +143,7 @@ const TourPackages = () => {
   };
 
   return (
-    <div className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-36">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
       {tours.map(tour => (
         <div key={tour._id} className="bg-white rounded-lg shadow-md p-6">
           <h2 className="text-xl font-semibold">{tour.name}</h2>
@@ -156,16 +156,16 @@ const TourPackages = () => {
         </div>
       ))}
 
-      <Modal isOpen={modalOpen}>
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+      <Modal isOpen={modalOpen} >
+        <div className="p-6">
           {inputFields.map((field, index) => (
-            <div key={index}>
+            <div key={index} className="mb-4">
               <label className="block text-gray-700 font-poppins" htmlFor={field.name}>{field.label}</label>
               {field.name === "images" || field.name === "itinerary" ? (
                 <>
                   <textarea
                     name={field.name}
-                    value={field.name === "images" ? formData[field.name].join(",") : additionalItinerary.join("\n")}
+                    value={field.name === "images" ? formData[field.name].join(", ") : additionalItinerary.join("\n")}
                     onChange={field.name === "images" ? handleChange : (e) => handleItineraryChange(0, e.target.value)}
                     className="w-full border border-gray-300 p-2 rounded-md"
                     rows={field.name === "images" ? "4" : "2"}
@@ -222,14 +222,14 @@ const TourPackages = () => {
               )}
             </div>
           ))}
-        </div>
-        <div className="mt-4 flex gap-4">
-          <button onClick={handleSubmitUpdate} className="bg-gray-700 hover:bg-gray-600 text-white font-semibold px-4 py-2 rounded-md">
-            Update
-          </button>
-          <button onClick={() => setModalOpen(false)} className="bg-gray-700 hover:bg-gray-600 text-white font-semibold px-4 py-2 rounded-md">
-            Close
-          </button>
+          <div className="flex justify-end">
+            <button onClick={handleSubmitUpdate} className="bg-gray-700 hover:bg-gray-600 text-white font-semibold px-4 py-2 rounded-md">
+              Update
+            </button>
+            <button onClick={() => setModalOpen(false)} className="bg-gray-700 hover:bg-gray-600 text-white font-semibold px-4 py-2 rounded-md ml-2">
+              Close
+            </button>
+          </div>
         </div>
       </Modal>
     </div>
