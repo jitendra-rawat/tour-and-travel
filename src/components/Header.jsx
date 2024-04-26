@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
-    <header className="bg-transparent py-6 absolute inset-x-0 top-0 z-20 shadow-lg ">
+    <header className="bg-transparent py-6 relative inset-x-0 top-0 z-20 shadow-lg ">
       <div className="container mx-auto lg:max-w-4xl xl:max-w-7xl flex justify-between items-center">
      <Link to={'/'}>  <h1 className="lg:text-2xl xl:text-4xl  font-semibold font-poppins">Busy Boots Travel</h1> </Link> 
         <nav>

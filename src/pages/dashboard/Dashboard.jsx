@@ -42,7 +42,7 @@ const Dashboard = () => {
 
       {/* left section */}
          
-      <div className='bg-gray-600 h-screen max-w-xs container pt-44'>
+      <div className='bg-gray-600 h-screen max-w-xs container pt-20'>
   <div className=' max-w-[500px] mx-auto container flex flex-col justify-start text-white'>
     <button className='bg-black mx-20 p-2 rounded-lg text-base text-white mb-8 cursor-pointer font-poppins font-bold' onClick={() => handleOptionClick('Dashboard')}>Dashboard</button>
     <button className='bg-black mx-20 p-2 rounded-lg  text-base text-white mb-8 cursor-pointer font-poppins font-bold' onClick={() => handleOptionClick('Tour Packages')}>Tour Packages</button>

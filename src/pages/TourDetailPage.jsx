@@ -5,9 +5,10 @@ import axios from 'axios';
 import { server } from '../utils';
 
 const TourDetailPage = () => {
+    
     const [tour, setTour] = useState(null); 
     const { id } = useParams(); 
-
+ 
     useEffect(() => {
        
         const fetchTourData = async () => {
