@@ -1,1 +1,1 @@
-export const server='https://tour-and-travel-backend.onrender.com'
+export const server='https://busy-boots-travel.onrender.com'
