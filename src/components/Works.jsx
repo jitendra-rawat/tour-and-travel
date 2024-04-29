@@ -30,13 +30,13 @@ const Works = () => {
   ];
 
   return (
-    <section className='max-w-7xl mx-auto container my-20'>
+    <section className='max-w-sm lg:max-w-7xl mx-auto container my-20'>
       <div>
         <h3 className='text-4xl text-gray-900 text-center font-bold font-poppins py-2'>How It Works</h3>
         <p className='text-xl text-gray-500 text-center font-semibold'>Keep calm & travel on</p>
       </div>
 
-      <div className='flex justify-between items-center mt-16'>
+      <div className='flex flex-wrap justify-between items-center mt-16'>
         {cardsData.map((card, index) => (
           <Card key={index} imageUrl={card.imageUrl} title={card.title} description={card.description} />
         ))}

@@ -25,7 +25,7 @@ const Tours = () => {
  
 
   return (
-    <div className="container mx-auto max-w-7xl my-28">
+    <div className="container mx-auto max-w-sm lg:max-w-7xl my-28">
       <div>
         <h3 className="text-4xl font-bold font-poppins">Featured things to do</h3>
         <p className="text-xl font-bold font-poppins text-gray-500 my-2">

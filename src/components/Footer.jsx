@@ -4,14 +4,14 @@ import { Link } from 'react-router-dom';
 const Footer = () => {
   return (
     <footer className="bg-gray-900 py-20">
-      <div className="container max-w-7xl mx-auto text-gray-300">
+      <div className="container max-w-sm lg:max-w-7xl mx-auto text-gray-300">
 
-        <div className="flex justify-between items-start">
+        <div className="flex flex-wrap justify-between items-start">
 
           {/* First Section:*/}
           <div className="mb-4  ">
-          <h2 className='text-4xl text-white mb-2 font-bold font-poppins'>Busy Boots Travel</h2>
-            <p className=" text-base font-poppins w-[300px]">Discover new horizons with our premier tour and travel services. From breathtaking landscapes to cultural gems, let us guide your journey.</p>
+          <h2 className='text-xl lg:text-4xl text-white mb-2 font-bold font-poppins'>Busy Boots Travel</h2>
+            <p className=" text-base font-poppins lg:w-[300px] text-justify ">Discover new horizons with our premier tour and travel services. From breathtaking landscapes to cultural gems, let us guide your journey.</p>
           </div>
 
           {/* Second Section: */}
@@ -48,8 +48,8 @@ const Footer = () => {
         </div>
 
 
-        <div className='mt-36 '>
-          <p className='text-gray-200 text-center text-base font-poppins'>Developed by- <span className='font-bold '>Jitendra Rawat</span> </p>
+        <div className='mt-10 lg:mt-36 '>
+          <p className='text-gray-200 text-left lg:text-center text-base font-poppins'>Developed by- <span className='font-bold '>Jitendra Rawat</span> </p>
         </div>
 
    

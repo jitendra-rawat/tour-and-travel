@@ -2,9 +2,9 @@ import React from 'react';
 
 const BlogCard = ({ imageSrc, title, description }) => {
   return (
-    <div className="bg-white shadow-md rounded-md p-4 flex items-start my-10">
+    <div className="bg-white shadow-md rounded-md p-4 flex flex-wrap items-start my-10">
 
-      <div className="w-[400px]">
+      <div className="lg:w-[400px]">
         <img src={imageSrc} alt="Blog" className="w-full object-cover h-auto rounded-md" />
       </div>
       <div className="ml-4 flex-1">

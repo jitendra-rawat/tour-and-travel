@@ -18,9 +18,9 @@ const Blogs = () => {
   }, []); 
 
   return (
-    <div className='max-w-7xl mx-auto container mt-36'>
+    <div className='max-w-sm lg:max-w-7xl mx-auto container mt-36'>
       <h1 className="text-3xl font-bold mb-8 font-poppins text-center"> Read Our Latest Blogs</h1>
-      <div className="flex flex-col ">
+      <div className="flex flex-wrap lg:flex-col ">
         {blogs.map(blog => (
           <Link to={`/blogs/${blog._id}`} key={blog._id}>
             <BlogCard

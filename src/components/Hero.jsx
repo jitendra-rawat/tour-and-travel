@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 const Hero = () => {
   return (
     <section className='hero-bg h-screen flex items-center justify-center  '>
-      <div className='max-w-sm lg:max-w-7xl container mx-auto flex flex-col justify-center items-center '>
-        <h1 className='text-5xl text-black text-left font-bold mb-4 leading-tight font-poppins'>It's Time to Explore the World</h1>
+      <div className='max-w-sm lg:max-w-7xl container mx-auto flex flex-col flex-wrap justify-center items-center '>
+        <h1 className='text-2xl lg:text-5xl text-black text-left font-bold mb-4 leading-tight font-poppins'>It's Time to Explore the World</h1>
         <h2 className='text-xl text-black mb-8 text-left font-poppins'>Discover amazing destinations and create unforgettable memories.</h2>
         
         <div className='flex justify-start'>

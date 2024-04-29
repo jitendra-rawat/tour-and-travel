@@ -4,10 +4,10 @@ const Download = () => {
   return (
  <section className='download-bg py-36'>
 
-    <div className='flex justify-between items-center max-w-7xl mx-auto container'>
+    <div className='flex flex-wrap justify-between items-center max-w-sm lg:max-w-7xl mx-auto container'>
 
   {/* left section */}
-    <div className='flex flex-col justify-start  '>
+    <div className='lg:w-1/2 flex flex-col justify-start  '>
         <h3 className='text-4xl text-gray-700 font-poppins font-bold'>Mobile Apps</h3>
         <p  className='text-xl text-gray-700 font-poppins my-4'>Access our world of convenience on-the-go! Download our mobile app for seamless, anytime access to our services.</p>
  
@@ -20,7 +20,7 @@ const Download = () => {
 
     {/* right section */}
 
-    <div>
+    <div className='lg:w-1/2'>
         <img className='w-full object-cover' src="https://img.freepik.com/free-vector/speech-text-concept-illustration_114360-4162.jpg?t=st=1711018775~exp=1711022375~hmac=94c4ab8495094e2a1a193104aca390b50b61106506d01c0560893c351a1dba00&w=826" alt="" />
 
     </div>
