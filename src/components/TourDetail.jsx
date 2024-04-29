@@ -13,6 +13,7 @@ import { MdCardTravel } from "react-icons/md";
 import { MdFeaturedPlayList } from "react-icons/md";
 import { IoAddCircle } from "react-icons/io5";
 import { MdNoteAlt } from "react-icons/md";
+import { FaArrowDown, FaArrowUp } from "react-icons/fa";
 
 const TourDetail = ({ tour, images }) => {
   const [openAccordionIndex, setOpenAccordionIndex] = useState(null);
@@ -48,7 +49,7 @@ const TourDetail = ({ tour, images }) => {
 
       <div className="my-20 px-10">
         <h2 className="text-4xl font-bold mb-4 font-poppins">{tour.name}</h2>
-        <p className="text-xl font-poppins text-gray-600 mb-4">
+        <p className="text-xl font-poppins text-gray-600 mb-4 text-justify">
           {tour.overview}
         </p>
 
@@ -62,16 +63,16 @@ const TourDetail = ({ tour, images }) => {
     <BsHighlights size={30} />
     <h2 className="text-xl font-poppins font-semibold mb-4">Highlights</h2>
   </div>
-  <ul className="text-base font-poppins">
+  <ul className="text-base font-poppins text-justify">
     {tour.highlights.map((highlight, index) => (
       <li key={index} className="mb-4">
-        {highlight.split(',').map((part, i) => (
-          <div key={i}>{part.trim()}</div>
-        ))}
+        <div>{highlight}</div>
       </li>
     ))}
   </ul>
 </div>
+
+
 
 
 
@@ -138,7 +139,7 @@ const TourDetail = ({ tour, images }) => {
             {"Day " + (index + 1)}
           </span>
           <span className="material-icons text-gray-400">
-            {openAccordionIndex === index ? "arrow_upward" : "arrow_downward"}
+            {openAccordionIndex === index ? <FaArrowUp /> : <FaArrowDown />}
           </span>
         </h3>
         {openAccordionIndex === index && (
@@ -158,7 +159,7 @@ const TourDetail = ({ tour, images }) => {
 
 
         {/* facilities and booking */}
-        <div className="my-20 flex justify-between items-start">
+        <div className="my-20 flex justify-between items-start gap-4">
 
           
           {/* features */}
@@ -192,12 +193,10 @@ const TourDetail = ({ tour, images }) => {
     <IoAddCircle size={30} />
     <h2 className="text-xl font-poppins font-semibold mb-4">Inclusions</h2>
   </div>
-  <ul className="text-base font-poppins">
+  <ul className="text-base font-poppins text-justify">
     {tour.inclusions.map((inclusionGroup, index) => (
       <li key={index} className="mb-4">
-        {inclusionGroup.split(',').map((inclusion, i) => (
-          <div key={i}>{inclusion.trim()}</div>
-        ))}
+        <div>{inclusionGroup}</div>
       </li>
     ))}
   </ul>
@@ -213,16 +212,15 @@ const TourDetail = ({ tour, images }) => {
     <MdNoteAlt size={30} />
     <h2 className="text-xl font-poppins font-semibold mb-4">Note</h2>
   </div>
-  <ul className="text-base font-poppins">
+  <ul className="text-base font-poppins text-justify">
     {tour.note.map((noteGroup, index) => (
       <li key={index} className="mb-4">
-        {noteGroup.split(',').map((note, i) => (
-          <div key={i}>{note.trim()}</div>
-        ))}
+        <div>{noteGroup}</div>
       </li>
     ))}
   </ul>
 </div>
+
 
 
 
