@@ -40,7 +40,7 @@ const Contact = () => {
       ...formData,
       [name]: value
     });
-    // Resetting errors when input changes
+   
     setErrors({
       ...errors,
       [name]: ''
@@ -88,7 +88,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="max-w-7xl container mx-auto flex justify-center items-start min-h-screen bg-gray-200 py-12 px-20 my-36 rounded-xl">
+    <div className="max-w-7xl container mx-auto flex justify-center items-start min-h-screen bg-gray-200 py-12 px-20 my-10 rounded-xl">
       <div className="w-1/2 mr-4">
         <div className="mb-4">
           <h2 className="text-2xl  mb-2 font-bold font-poppins">Contact Details</h2>

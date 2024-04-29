@@ -8,6 +8,7 @@ import Footer from './components/Footer';
 import Dashboard from './pages/dashboard/Dashboard';
 import { ToastContainer, toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
+  import Loader from './components/Loader'
 
 
 
@@ -34,7 +35,7 @@ const App = () => {
               key={index}
               path={path}
               element={
-                <Suspense fallback={<div>Loading...</div>}>
+                <Suspense fallback={<Loader />}>
                   <Component />
                 </Suspense>
               }
